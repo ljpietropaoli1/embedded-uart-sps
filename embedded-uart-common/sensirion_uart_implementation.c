@@ -31,11 +31,13 @@
 
 #include "sensirion_arch_config.h"
 #include "sensirion_uart.h"
+#include <Arduino.h>
+#include <serial_bridge.h>
 
 /*
  * INSTRUCTIONS
  * ============
- *
+sensirion_uart_implementation *
  * Implement all functions where they are marked with TODO: implement
  * Follow the function specification in the comments.
  */
@@ -57,7 +59,7 @@ int16_t sensirion_uart_select_port(uint8_t port) {
  * Return:      0 on success, an error code otherwise
  */
 int16_t sensirion_uart_open() {
-    return 0;
+    return serial1_begin(115200); // Initialize Serial1 with 115200 baud rate
 }
 
 /**
@@ -66,8 +68,7 @@ int16_t sensirion_uart_open() {
  * Return:      0 on success, an error code otherwise
  */
 int16_t sensirion_uart_close() {
-    // TODO: implement
-    return 0;
+    return serial1_end(); // Close Serial1
 }
 
 /**
@@ -78,8 +79,7 @@ int16_t sensirion_uart_close() {
  * Return:      Number of bytes sent or a negative error code
  */
 int16_t sensirion_uart_tx(uint16_t data_len, const uint8_t* data) {
-    // TODO: implement
-    return 0;
+    return serial1_write(data_len, data);
 }
 
 /**
@@ -90,8 +90,7 @@ int16_t sensirion_uart_tx(uint16_t data_len, const uint8_t* data) {
  * Return:      Number of bytes received or a negative error code
  */
 int16_t sensirion_uart_rx(uint16_t max_data_len, uint8_t* data) {
-    // TODO: implement
-    return 0;
+    return serial1_read(max_data_len, data);
 }
 
 /**
@@ -103,5 +102,5 @@ int16_t sensirion_uart_rx(uint16_t max_data_len, uint8_t* data) {
  * @param useconds the sleep time in microseconds
  */
 void sensirion_sleep_usec(uint32_t useconds) {
-    // TODO: implement
+    delayMicroseconds(useconds);
 }

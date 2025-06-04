@@ -37,6 +37,7 @@ extern "C" {
 #endif
 
 #include "sensirion_arch_config.h"
+#include <Arduino.h>
 
 /**
  * sensirion_uart_select_port() - select the UART port index to use
